@@ -7,6 +7,14 @@ func ToInt(s string) int {
 	return i
 }
 
+func ToCharIntArr(s string) []int {
+	var result []int
+	for _, v := range s {
+		result = append(result, ToInt(string(v)))
+	}
+	return result
+}
+
 func ToIntArr(s []string) []int {
 	var result []int
 	for _, v := range s {
