@@ -44,17 +44,6 @@ func calculateWholeCheckSum(blocks []int, ids []int) int {
 	return checkSum(result)
 }
 
-func sortBlock(blocks []*Block) []*Block {
-	for i := 0; i < len(blocks); i++ {
-		for j := i + 1; j < len(blocks); j++ {
-			if blocks[i].startIndex > blocks[j].startIndex {
-				blocks[i], blocks[j] = blocks[j], blocks[i]
-			}
-		}
-	}
-	return blocks
-}
-
 func moveFileBlock(freeBlocks []*Block, blockSize int, id int, startIndex int) ([]*Block, Block) {
 	isMoved := false
 	movedBlock := Block{id, 1e9, blockSize}
