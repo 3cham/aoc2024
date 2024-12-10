@@ -46,7 +46,7 @@ func calculateWholeCheckSum(blocks []int, ids []int) int {
 
 func moveFileBlock(freeBlocks []*Block, blockSize int, id int, startIndex int) ([]*Block, Block) {
 	isMoved := false
-	movedBlock := Block{id, 1e9, blockSize}
+	movedBlock := Block{id, startIndex, blockSize}
 	li := -1
 
 	for i := 0; i < len(freeBlocks); i++ {
@@ -63,9 +63,8 @@ func moveFileBlock(freeBlocks []*Block, blockSize int, id int, startIndex int) (
 		freeBlocks[li].startIndex += blockSize
 		freeBlocks[li].length -= blockSize
 		freeBlocks = append(freeBlocks, &Block{0, startIndex, blockSize})
-		return freeBlocks, movedBlock
 	}
-	return freeBlocks, Block{id, startIndex, blockSize}
+	return freeBlocks, movedBlock
 }
 
 func checkSum(blocks []Block) int {
