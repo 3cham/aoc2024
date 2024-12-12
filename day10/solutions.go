@@ -43,7 +43,7 @@ func trekkingRatingsFrom(heights [][]int, x int, y int) int {
 		marked = append(marked, row)
 	}
 
-	queue := []Pair{{x, y}}
+	queue := []utils.Pair{{x, y}}
 	total := 0
 	for len(queue) > 0 {
 		p := queue[0]
@@ -52,26 +52,21 @@ func trekkingRatingsFrom(heights [][]int, x int, y int) int {
 			total += 1
 		}
 		if p.X > 0 && marked[p.X-1][p.Y] == 0 && heights[p.X-1][p.Y] == heights[p.X][p.Y]+1 {
-			queue = append(queue, Pair{p.X - 1, p.Y})
+			queue = append(queue, utils.Pair{p.X - 1, p.Y})
 		}
 		if p.X < len(heights)-1 && marked[p.X+1][p.Y] == 0 && heights[p.X+1][p.Y] == heights[p.X][p.Y]+1 {
-			queue = append(queue, Pair{p.X + 1, p.Y})
+			queue = append(queue, utils.Pair{p.X + 1, p.Y})
 		}
 		if p.Y > 0 && marked[p.X][p.Y-1] == 0 && heights[p.X][p.Y-1] == heights[p.X][p.Y]+1 {
-			queue = append(queue, Pair{p.X, p.Y - 1})
+			queue = append(queue, utils.Pair{p.X, p.Y - 1})
 		}
 		if p.Y < len(heights[p.X])-1 && marked[p.X][p.Y+1] == 0 && heights[p.X][p.Y+1] == heights[p.X][p.Y]+1 {
-			queue = append(queue, Pair{p.X, p.Y + 1})
+			queue = append(queue, utils.Pair{p.X, p.Y + 1})
 		}
 		queue = queue[1:]
 	}
 
 	return total
-}
-
-type Pair struct {
-	X int
-	Y int
 }
 
 func trekkingScoresFrom(heights [][]int, x int, y int) int {
@@ -84,7 +79,7 @@ func trekkingScoresFrom(heights [][]int, x int, y int) int {
 		marked = append(marked, row)
 	}
 
-	queue := []Pair{{x, y}}
+	queue := []utils.Pair{{x, y}}
 	total := 0
 	for len(queue) > 0 {
 		p := queue[0]
@@ -94,16 +89,16 @@ func trekkingScoresFrom(heights [][]int, x int, y int) int {
 				total += 1
 			}
 			if p.X > 0 && marked[p.X-1][p.Y] == 0 && heights[p.X-1][p.Y] == heights[p.X][p.Y]+1 {
-				queue = append(queue, Pair{p.X - 1, p.Y})
+				queue = append(queue, utils.Pair{p.X - 1, p.Y})
 			}
 			if p.X < len(heights)-1 && marked[p.X+1][p.Y] == 0 && heights[p.X+1][p.Y] == heights[p.X][p.Y]+1 {
-				queue = append(queue, Pair{p.X + 1, p.Y})
+				queue = append(queue, utils.Pair{p.X + 1, p.Y})
 			}
 			if p.Y > 0 && marked[p.X][p.Y-1] == 0 && heights[p.X][p.Y-1] == heights[p.X][p.Y]+1 {
-				queue = append(queue, Pair{p.X, p.Y - 1})
+				queue = append(queue, utils.Pair{p.X, p.Y - 1})
 			}
 			if p.Y < len(heights[p.X])-1 && marked[p.X][p.Y+1] == 0 && heights[p.X][p.Y+1] == heights[p.X][p.Y]+1 {
-				queue = append(queue, Pair{p.X, p.Y + 1})
+				queue = append(queue, utils.Pair{p.X, p.Y + 1})
 			}
 		}
 		queue = queue[1:]
