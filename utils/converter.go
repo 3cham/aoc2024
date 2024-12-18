@@ -1,6 +1,9 @@
 package utils
 
-import "strconv"
+import (
+	"regexp"
+	"strconv"
+)
 
 func ToInt(s string) int {
 	i, _ := strconv.Atoi(s)
@@ -34,4 +37,11 @@ func ToInt64Arr(s []string) []int64 {
 		result = append(result, ToInt64(v))
 	}
 	return result
+}
+
+func ParseNums(s string) []int {
+	r := regexp.MustCompile("-?[0-9]{1,10}")
+
+	nums := r.FindAllString(s, -1)
+	return ToIntArr(nums)
 }
